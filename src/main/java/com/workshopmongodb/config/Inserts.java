@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.workshopmongodb.domain.Post;
 import com.workshopmongodb.domain.User;
+import com.workshopmongodb.dto.AuthorDTO;
 import com.workshopmongodb.repositories.PostRepository;
 import com.workshopmongodb.repositories.UserRepository;
 
@@ -36,10 +37,11 @@ public class Inserts {
 		User alex = new User(null, "Alex Green", "alex@gmail.com");
 		User bob = new User(null, "Bob Grey", "bob@gmail.com");
 		
-		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", maria);
-		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", maria);
-
 		userRepository.save(Arrays.asList(maria, alex, bob));
+		
+		Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu viagem", "Vou viajar para São Paulo. Abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom dia", "Acordei feliz hoje!", new AuthorDTO(maria));
+		
 		postReposiroty.save(Arrays.asList(post1, post2));
 	}
 
